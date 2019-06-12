@@ -21,8 +21,11 @@ namespace HomeWorkArrays
             //OddAndEven();
             //SortingAscending();
             //SortingDescending();
+            // SecondLargest();
+            // SecondSmallest();
 
-
+            //Matrix();
+            AdditionOfTwoMaTrices();
 
         }
 
@@ -44,7 +47,7 @@ namespace HomeWorkArrays
 
         public static void ReverseArr()
         {
-            var myArr= GetArrayFromUser();
+            var myArr = GetArrayFromUser();
             for (int i = myArr.Length - 1; i >= 0; i--)
             {
                 Console.Write($"{myArr[i]}, ");
@@ -75,7 +78,7 @@ namespace HomeWorkArrays
         public static void InsertNewElement()
         {
             Console.WriteLine("Add elements to array!");
-           
+
             int i = 0;
             int pos = 0;
             int item = 0;
@@ -158,7 +161,7 @@ namespace HomeWorkArrays
             var myArr = GetArrayFromUser();
             int[] arrayToPrint = new int[myArr.Length];
             var index = -1; // to know where to add element
-            
+
             for (int i = 0; i <= myArr.Length; i++)
             {
                 if (GetIndexOf(myArr[i], arrayToPrint) == -1)
@@ -170,7 +173,7 @@ namespace HomeWorkArrays
 
             }
         }
-       
+
 
         public static void PrintDistinctElem()
         {
@@ -187,13 +190,13 @@ namespace HomeWorkArrays
         //8. Write a program to merge two arrays of same size sorted in ascending order.
         public static void Merging2ArrAndSort()
         {
-            int[] arr1 = GetArrayFromUser() ;
+            int[] arr1 = GetArrayFromUser();
             int[] arr2 = GetArrayFromUser();
-            int[] arr3 = new int[arr1.Length+arr2.Length];
-           
+            int[] arr3 = new int[arr1.Length + arr2.Length];
+
             int i, j, k;
 
-           
+
             for (i = 0; i < arr1.Length; i++)
             {
                 arr3[i] = arr1[i];
@@ -203,7 +206,7 @@ namespace HomeWorkArrays
                 arr3[i] = arr2[j];
                 i++;
             }
-            
+
             for (i = 0; i < arr3.Length; i++)
             {
                 for (k = 0; k < arr3.Length - 1; k++)
@@ -218,7 +221,7 @@ namespace HomeWorkArrays
                 }
             }
 
-           
+
             Console.Write("\nThe merged array in ascending order is :\n");
             for (i = 0; i < arr3.Length; i++)
             {
@@ -258,14 +261,14 @@ namespace HomeWorkArrays
             }
             Console.WriteLine($"Maximum: {Max}");
         }
-        
+
         //10. Write a programin to separate odd and even integers in separate arrays
         public static void OddAndEven()
         {
             int[] myArr = GetArrayFromUser();
             int[] myArrOdd = new int[10];
             int[] myArrEven = new int[10];
-            int i,j=0,k=0;
+            int i, j = 0, k = 0;
             for (i = 0; i < myArr.Length; i++)
             {
                 if (myArr[i] % 2 == 0)
@@ -291,7 +294,7 @@ namespace HomeWorkArrays
             {
                 Console.Write("{0} ", myArrOdd[i]);
             }
-            
+
         }
 
         //11. Write a program to sort elements of array in ascending order.
@@ -338,7 +341,7 @@ namespace HomeWorkArrays
 
                 }
             }
-            Console.WriteLine();
+
             foreach (var elem in myArray)
             {
                 Console.WriteLine($"{elem}, ");
@@ -347,12 +350,131 @@ namespace HomeWorkArrays
 
         //13. Write a program to find the second largest element in an array.
 
+        public static void SecondLargest()
+        {
+            int[] myArray = GetArrayFromUser();
+            for (int i = 0; i < myArray.Length - 1; i++)
+            {
+                for (int j = i + 1; j < myArray.Length; j++)
+                {
+                    if (myArray[i] < myArray[j])
+                    {
+                        var temp = myArray[i];
+                        myArray[i] = myArray[j];
+                        myArray[j] = temp;
+                    }
+
+                }
+            }
+            Console.WriteLine("The second largest is {0}", myArray[1]);
+
+
+        }
         //14. Write a program to find the second smallest element in an array.
 
-        //TODO saturday
+        public static void SecondSmallest()
+        {
+            int[] myArray = GetArrayFromUser();
+            for (int i = 0; i < myArray.Length - 1; i++)
+            {
+                for (int j = i + 1; j < myArray.Length; j++)
+                {
+                    if (myArray[i] > myArray[j])
+                    {
+                        var temp = myArray[i];
+                        myArray[i] = myArray[j];
+                        myArray[j] = temp;
+                    }
+
+                }
+            }
+            Console.WriteLine("The second smallest is {0}", myArray[1]);
+        }
+
+        //TODO 
         //Write a program for a 2D array of size 3x3 and print the matrix.
 
+        public static void Matrix()
+        {
+
+            int[,] myMatrix =
+            {
+                {1,2,3 },
+                {4,5,6 },
+                {7,8,9 }
+            };
+
+            for (int row = 0; row < myMatrix.GetLength(0); row++)
+            {
+                for (int col = 0; col < myMatrix.GetLength(1); col++)
+                {
+                    Console.WriteLine($"myArray[{row},{col}]={myMatrix[row, col]}");
+                }
+            }
+        }
+
         //Write a program in C# Sharp for addition of two Matrices of same size
+
+        public static void AdditionOfTwoMaTrices()
+        {
+            int i, j, n;
+            int[,] a = new int[50, 50];
+            int[,] b = new int[50, 50];
+            int[,] rez = new int[50, 50];
+
+            Console.Write("Input the size of the square matrix (less than 5): ");
+            n = Convert.ToInt32(Console.ReadLine());
+
+            Console.Write("Input elements in the first matrix :\n");
+            for (i = 0; i < n; i++)
+            {
+                for (j = 0; j < n; j++)
+                {
+                    Console.Write("element - [{0},{1}] : ", i, j);
+                    a[i, j] = Convert.ToInt32(Console.ReadLine());
+                }
+            }
+
+            Console.Write("Input elements in the second matrix :\n");
+            for (i = 0; i < n; i++)
+            {
+                for (j = 0; j < n; j++)
+                {
+                    Console.Write("element - [{0},{1}] : ", i, j);
+                    b[i, j] = Convert.ToInt32(Console.ReadLine());
+                }
+            }
+            Console.WriteLine("First Matrix");
+            for (i = 0; i < n; i++)
+            {
+                Console.Write("\n");
+                for (j = 0; j < n; j++)
+                    
+                    Console.Write("{0}\t", a[i, j]);
+            }
+            Console.Write("\n");
+            Console.WriteLine("Second Matrix");
+
+            for (i = 0; i < n; i++)
+            {
+                Console.Write("\n");
+                for (j = 0; j < n; j++)
+                Console.Write("{0}\t", b[i, j]);
+            }
+            for (i = 0; i < n; i++)
+                for (j = 0; j < n; j++)
+                    rez[i, j] = a[i, j] + b[i, j];
+            Console.Write("\n");
+            Console.WriteLine("The result is......");
+            for (i = 0; i < n; i++)
+            {
+                Console.Write("\n");
+                for (j = 0; j < n; j++)
+                    Console.Write("{0}\t", rez[i, j]);
+            }
+
+        }
+
 
         public static int[] GetArrayFromUser()
         {
@@ -376,6 +498,47 @@ namespace HomeWorkArrays
                 }
             }
             return -1;
+        }
+
+        public static void SortingAsc()
+        {
+            var myArray = GetArrayFromUser();
+
+            for (int i = 0; i < myArray.Length - 1; i++)
+            {
+                for (int j = i + 1; j < myArray.Length; j++)
+                {
+                    if (myArray[i] > myArray[j])
+                    {
+                        var temp = myArray[i];
+                        myArray[i] = myArray[j];
+                        myArray[j] = temp;
+                    }
+
+                }
+            }
+
+
+        }
+
+        public static void SortingDesc()
+        {
+            var myArray = GetArrayFromUser();
+
+            for (int i = 0; i < myArray.Length - 1; i++)
+            {
+                for (int j = i + 1; j < myArray.Length; j++)
+                {
+                    if (myArray[i] < myArray[j])
+                    {
+                        var temp = myArray[i];
+                        myArray[i] = myArray[j];
+                        myArray[j] = temp;
+                    }
+
+                }
+            }
+
         }
 
     }
